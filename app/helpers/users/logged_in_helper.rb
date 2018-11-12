@@ -1,0 +1,2 @@
+module Users::LoggedInHelper
+end
