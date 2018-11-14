@@ -16,9 +16,16 @@
             <img src="<%= asset_path( 'Title.png' ) %>" class="Title-style"/>
           </div>
        <%if user_signed_in? %>
-          <div class="container">
-              <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "Logout-button btn-primary btn-sm" %>
-          </div>
+           
+           <div class="active-cyan-4 mb-4 search-bar-style">
+              <input class="form-control search_container_input" type="text" placeholder="Search" onkeyup="onSearchButtonClick()">
+              <div class='search-results'></div>
+           </div>
+
+           <div class="container">
+               <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "Logout-button btn-primary btn-sm" %>
+           </div>
+
        <%else%>
         <div class="login-div">
           <nav class="nav-style-row">
