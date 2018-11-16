@@ -1,0 +1,9 @@
+<div class="avatar">        
+        <!-- New Avatar Upload Form -->
+        <%= form_tag({controller: "features", action: 'edit_pro_pic'}, method: "post", class: "image_edit_form") do |f| %>
+            <div class="btn fileinput-button avatar">
+                <%= file_field_tag :avatar, id: 'input_image'  %>
+                <%= image_tag(current_user.avatar, :width=> '20%', :id => "avatar_img") %>
+            </div>
+        <% end %>
+ </div>

@@ -5,6 +5,12 @@ class FeaturesController < ApplicationController
     render json: @users
   end
 
+
+  def edit_pro_pic
+    
+
+  end
+
   # def welcome_msg
   #   render 
   # end

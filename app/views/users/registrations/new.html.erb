@@ -24,9 +24,19 @@
   <div class="form-group">
     <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password confirmation",class: "form-control form-control-sm" %>
   </div>
+  
+  <div class="form-group">
+  <span class="btn btn-info fileinput-button">
+    <span>Upload Profile Pic</span>
+    <input type="file">
+  </span>
+  </div>
 
+
+  <div class="form-group">
   <div class="actions">
     <%= f.submit "Sign up", class: "btn btn-success" %>
+  </div>
   </div>
 <% end %>
 

@@ -5,7 +5,7 @@ function onSearchButtonClick () {
   if(text.length) {
     $.ajax({
         method: "GET",
-        url: "features/search_user",
+        url: "/features/search_user",
         data: { search_text: text }
       })
       .done(function ( data ) {
