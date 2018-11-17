@@ -27,8 +27,8 @@
   
   <div class="form-group">
   <span class="btn btn-info fileinput-button">
-    <span>Upload Profile Pic</span>
-    <input type="file">
+    <span>Select pro pic</span>
+    <%= f.file_field :avatar, :title => "profile"  ,accept: 'image/jpeg,image/gif,image/png' %>
   </span>
   </div>
 

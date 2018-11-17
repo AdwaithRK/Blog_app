@@ -1,9 +1,14 @@
 <div class="avatar">        
         <!-- New Avatar Upload Form -->
-        <%= form_tag({controller: "features", action: 'edit_pro_pic'}, method: "post", class: "image_edit_form") do |f| %>
-            <div class="btn fileinput-button avatar">
-                <%= file_field_tag :avatar, id: 'input_image'  %>
-                <%= image_tag(current_user.avatar, :width=> '20%', :id => "avatar_img") %>
+        <%= form_tag({controller: "features", action: 'save_new_pro_pic'}, multipart: true, method: "post", class: "image_edit_form") do |f| %>
+            <div class="save-image">
+                <div class="btn fileinput-button avatar">
+                    <%= file_field_tag :avatar, id: 'input_image'  %>
+                    <%= image_tag(current_user.avatar, :id => "avatar_image_1") %>
+                    <p class="para"> hhhhhhhhhhhhhhai</p>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary save-image">Save</button>
             </div>
         <% end %>
  </div>

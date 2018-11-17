@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load',function(){
     $("#input_image").on('change',function(){
 
     var file = document.getElementById('input_image').files[0];
@@ -10,7 +10,8 @@ $(document).ready(function(){
         var image = document.createElement("img");
         // the result image data
         image.src = e.target.result;
-        document.body.appendChild(image);
+        image.id="avatar_image_1"
+        document.getElementById("avatar_image_1").replaceWith(image);
      }
      // you have to declare the file loading
      reader.readAsDataURL(file);

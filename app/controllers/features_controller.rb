@@ -11,6 +11,18 @@ class FeaturesController < ApplicationController
 
   end
 
+
+  def save_new_pro_pic
+
+    unless params[:avatar].blank?
+      # p "parameters are#{params[:avatar]}"
+      current_user.avatar.purge_later
+      current_user.avatar.attach(params[:avatar])
+      # p 'hello from save_new_pro_pic'
+    end
+    redirect_to features_edit_pro_pic_path
+  end
+
   # def welcome_msg
   #   render 
   # end
