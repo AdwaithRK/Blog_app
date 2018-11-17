@@ -1,0 +1,15 @@
+           
+          
+          <% if current_user.avatar.attached? %>
+            <a href="<%=features_edit_pro_pic_url %>"> <%=image_tag (current_user.avatar), :title => current_user.name, :class => "style-pro-pic"%></a> 
+          <%end%> 
+           <div class="active-cyan-4 mb-4 search-bar-style">
+              <input class="form-control search_container_input" type="text" placeholder="Search" onkeyup="onSearchButtonClick()">
+              <div class='search-results'></div>
+           </div>
+
+           <div class="container">
+               <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "Logout-button btn-primary btn-sm" %>
+           </div>
+
+
