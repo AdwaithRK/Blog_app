@@ -13,7 +13,13 @@
     <header class="navbar navbar-fixed-top dark-black-color nav-style">
        <div class="col-sm-12 main-header-div">
           <div class="">
-            <img src="<%= asset_path( 'Title.png' ) %>" class="Title-style"/>
+          <%if user_signed_in?%>
+            <% @url='/logged_in'%>
+          <%else%>
+            <% @url='/register/cmon_let_me_in'%>
+          <%end%>
+
+            <a href="<%=@url%>"><img src="<%= asset_path( 'Title.png' ) %>" class="Title-style"/></a>
           </div>
        <%if user_signed_in? %>
           <%= render 'layouts/logout_header'%>
