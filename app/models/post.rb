@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-    enum status: %w(Draft Published)
+    enum status: %w(Draft Publish)
     enum privacy: %w(Publicly Privately)
     has_many_attached :images
     belongs_to :user

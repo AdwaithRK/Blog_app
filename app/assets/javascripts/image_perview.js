@@ -22,6 +22,25 @@ $(document).on('turbolinks:load',function(){
     console.log("hello");
     $(".nav-link").removeClass('active')
     $(this).addClass('active')
+    text=$(this).text()
+    text=text.toLowerCase();
+    url="/feeds/"+text;
+    console.log(url);
+
+    $.ajax({
+        method: "GET",
+        url: url
+      }).done(function(data){
+         console.log(data);
+         
+
+
+
+
+      }
+      )
+
+
   })
 
 
