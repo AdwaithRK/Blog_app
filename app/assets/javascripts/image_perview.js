@@ -32,16 +32,14 @@ $(document).on('turbolinks:load',function(){
         url: url
       }).done(function(data){
          console.log(data);
-         
-
-
-
-
+         for(let obj of data){
+             
+         }
       }
       )
 
 
-  })
+  }) 
 
 
 }
