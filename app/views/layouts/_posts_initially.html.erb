@@ -1,5 +1,25 @@
 
-<% posts.each do |post|%>
+<% @posts.each do |post| %>
+<div class="feed-individual">
 
+<div class="feed-header">
+    <% if post.user.avatar.attached? %>
+    <%=image_tag (post.user.avatar), :class => "pro-pic" %>
+    <% elsif %> 
+    <img src="<%= asset_path( 'image.jpg' ) %>" class="pro-pic"/>
+    <% end %>
 
+    <span class="feed-name"> <%= post.user.name %> </span>
+</div>
+
+<div class="feed-body">
+  <div class='feed-title'> <%=post.title%> </div>
+  <div class='feed-content'> <%=post.content%> </div>
+</div>
+
+<div class="feed-footer">
+  <button type='button' class='btn btn-primary btn-lg feed-button'>like</button><button type='button' class='btn btn-secondary btn-lg feed-button'>comment</button>
+</div>
+
+</div>
 <% end %>

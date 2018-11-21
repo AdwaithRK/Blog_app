@@ -37,7 +37,7 @@ $(document).on('turbolinks:load',function(){
         //     }
              
         //  }
-
+        debugger;
         (data.feed).forEach(function(obj){
             console.log(obj);
             var img = $('<img class="pro-pic">');

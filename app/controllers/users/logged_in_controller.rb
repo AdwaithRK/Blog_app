@@ -11,3 +11,5 @@ class Users::LoggedInController < ApplicationController
 
     end
 end
+
+
