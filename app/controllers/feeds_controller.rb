@@ -3,13 +3,13 @@ class FeedsController < ApplicationController
   def public
     p "in public"
     @posts = Post.where(privacy: "Publicly", status: "Publish").includes(:user);
-    p @posts
+    render 'feed'
   end
 
   def personal
     p "in personal"
-    @personal_feed = current_user.posts;
-    render json: @personal_feed
+    @posts = current_user.posts
+    render 'feed'
   end
 
   def following

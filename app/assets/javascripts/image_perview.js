@@ -17,31 +17,6 @@ $(document).on('turbolinks:load',function(){
      reader.readAsDataURL(file);
  })
 
-
- $(".nav-link").click(function() {
-    console.log("hello");
-    $(".nav-link").removeClass('active')
-    $(this).addClass('active')
-    text=$(this).text()
-    text=text.toLowerCase();
-    url="/feeds/"+text;
-    console.log(url);
-
-    $.ajax({
-        method: "GET",
-        url: url
-      }).done(function(data){
-         console.log(data);
-         for(let obj of data){
-             
-         }
-      }
-      )
-
-
-  }) 
-
-
 }
 
 )
