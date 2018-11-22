@@ -16,7 +16,7 @@ class FeaturesController < ApplicationController
 
     unless params[:avatar].blank?
       # p "parameters are#{params[:avatar]}"
-      current_user.avatar.purge_later
+      current_user.avatar.purge
       current_user.avatar.attach(params[:avatar])
       # p 'hello from save_new_pro_pic'
     end
