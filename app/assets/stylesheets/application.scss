@@ -9,7 +9,9 @@
 // Place custom css depending on bootstrap variables here!
 
 
-
+.margin_for_button{
+    margin-left: 20px;
+}
 
 .form_container{
     // float: right !important;
@@ -122,3 +124,10 @@
     width: 50px;
     height: 50px;
 }
+
+
+.comment-box{
+    display: flex;
+    width: 90%;
+} 
+

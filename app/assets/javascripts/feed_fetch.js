@@ -37,7 +37,6 @@ $(document).on('turbolinks:load',function(){
         //     }
              
         //  }
-        debugger;
         (data.feed).forEach(function(obj){
             console.log(obj);
             var img = $('<img class="pro-pic">');
@@ -56,7 +55,7 @@ $(document).on('turbolinks:load',function(){
             var feedHeader=$("<div class='feed-header'>");
             var feedBody=$("<div class='feed-body'>");
             var feedFooter=$("<div class='feed-footer'>");
-            $(feedFooter).append("<button type='button' class='btn btn-primary btn-lg feed-button'>like</button><button type='button' class='btn btn-secondary btn-lg feed-button'>comment</button>");
+            $(feedFooter).append("<button type='button' class='btn btn-light btn-lg feed-button like-button'><i class='fa fa-thumbs-o-up' style='font-size:24px'></i></button><button type='button' class='btn btn-light btn-lg feed-button comment-button'><i class='fa fa-comment-o' style='font-size:24px'></i></button>");
             $(feedHeader).append(img)
             $(feedHeader).append("<span class='feed-name'>"+obj.user_name+"</span>");
             $(feedBody).append("<div class='feed-title'>"+obj.title+"</div>");
@@ -71,7 +70,30 @@ $(document).on('turbolinks:load',function(){
       )
 
 
-  }) 
+  })
+  
+  
+    // $(".comment-button").on('click',function(){
+    //     console.log("comment")
+    //     $(this).after(
+    //         "<form><div class='form-group'><input type='text' class='form-control' placeholder='comment...'> <button type='submit' class='btn btn-primary'>comment</button> </div></form>"
+    //     )
+    // }
+    // )
+
+    $("body").on('click','.comment-button',function(){
+        $(this).next().remove();
+        $('.comment-form').remove();
+        console.log("comment")
+        $(this).after(
+            "<form class='comment-form'><div class='form-group comment-box'><input type='text' class='form-control' placeholder='comment...'> <button type='submit' class='btn btn-primary margin_for_button'>comment</button> </div></form>"
+        )
+    })
+
+    $(".like-button").on('click',function(){
+        console.log("like");
+    }
+    )
 
 
 }

@@ -3,6 +3,7 @@ class Users::LoggedInController < ApplicationController
       @name = current_user.name
       @feedtype = params[:feed]
       p params[:feed]
+      
       if(@feedtype == 'public')
         @posts = Post.where(privacy: "Publicly", status: "Publish").includes(:user);
       else 
