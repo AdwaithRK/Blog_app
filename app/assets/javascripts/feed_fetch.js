@@ -55,9 +55,9 @@ $(document).on('turbolinks:load',function(){
             var feedHeader=$("<div class='feed-header'>");
             var feedBody=$("<div class='feed-body'>");
             var feedFooter=$("<div class='feed-footer'>");
-            $(feedFooter).append("<button type='button' class='btn btn-light btn-lg feed-button like-button'><i class='fa fa-thumbs-o-up' style='font-size:24px'></i></button><button type='button' class='btn btn-light btn-lg feed-button comment-button'><i class='fa fa-comment-o' style='font-size:24px'></i></button>");
+            $(feedFooter).append("<button type='button' class='btn btn-light btn-lg feed-button like-button'><i class='fa fa-thumbs-o-up' style='font-size:24px'></i></button><button type='button' class='btn btn-light btn-lg feed-button comment-button' data-post-id="+obj.post_id+" data-user-id="+obj.user_id+"><i class='fa fa-comment-o' style='font-size:24px'></i></button>");
             $(feedHeader).append(img)
-            $(feedHeader).append("<span class='feed-name'>"+obj.user_name+"</span>");
+            $(feedHeader).append("<a href='profiles/"+obj.user_id+"' ><span class='feed-name'>"+obj.user_name+"</span></a>");
             $(feedBody).append("<div class='feed-title'>"+obj.title+"</div>");
             $(feedBody).append("<div class='feed-content'>"+obj.content+"</div>");
             $(feedIndividual).append(feedHeader);
@@ -84,13 +84,15 @@ $(document).on('turbolinks:load',function(){
     $("body").on('click','.comment-button',function(){
         $(this).next().remove();
         $('.comment-form').remove();
+        console.log(this.getAttribute("data-user-id"));
+        console.log(this.getAttribute("data-post-id"));       
         console.log("comment")
         $(this).after(
             "<form class='comment-form'><div class='form-group comment-box'><input type='text' class='form-control' placeholder='comment...'> <button type='submit' class='btn btn-primary margin_for_button'>comment</button> </div></form>"
         )
     })
 
-    $(".like-button").on('click',function(){
+    $("body").on('click',".like-button",function(){
         console.log("like");
     }
     )
