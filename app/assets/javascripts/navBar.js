@@ -21,10 +21,6 @@ function onSearchButtonClick () {
   }
 }
 
-
-
-
 function bowbow(){
   console.log("bow bow");
 }
-
