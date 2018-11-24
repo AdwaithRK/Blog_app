@@ -23,10 +23,10 @@ $(document).on('turbolinks:load',function(){
             data: data
         }
         ).done(function(data){
-           console.log("success")
+            console.log(data);
+           console.log("success");
         }
         )
-
       });
       
 }
