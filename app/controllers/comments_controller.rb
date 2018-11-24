@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
     def create
-      
+      p "in comments create"
     end
 
 
