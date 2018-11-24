@@ -15,8 +15,18 @@ $(document).on('turbolinks:load',function(){
 
     $("body" ).on( "submit", '.comment-form' ,function( event ) {
         event.preventDefault();
-        // console.log( $( this ).serialize() );
-        
+         data=$( this ).serialize();
+
+        $.ajax({
+            method: "POST",
+            url: "comments/create",
+            data: data
+        }
+        ).done(function(data){
+           console.log("success")
+        }
+        )
+
       });
       
 }
