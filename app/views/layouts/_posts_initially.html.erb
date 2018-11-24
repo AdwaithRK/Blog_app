@@ -9,7 +9,7 @@
     <img src="<%= asset_path( 'image.jpg' ) %>" class="pro-pic"/>
     <% end %>
 
-    <span class="feed-name"> <%= post.user.name %> </span>
+    <a href="profiles/<%=post.user.id%>"> <span class="feed-name"> <%= post.user.name %> </span> </a>
 </div>
 
 <div class="feed-body">
@@ -18,7 +18,7 @@
 </div>
 
 <div class="feed-footer">
-<button type='button' class='btn btn-light btn-lg feed-button like-button'><i class='fa fa-thumbs-o-up' style='font-size:24px'></i></button><button type='button' class='btn btn-light btn-lg feed-button comment-button'><i class='fa fa-comment-o' style='font-size:24px'></i></button>
+<button type='button' class='btn btn-light btn-lg feed-button like-button'><i class='fa fa-thumbs-o-up' style='font-size:24px'></i></button><button type='button' class='btn btn-light btn-lg feed-button comment-button' data-post-id=<%= post.id %> data-user-id= <%= post.user.id %> ><i class='fa fa-comment-o' style='font-size:24px'></i></button>
 </div>
 
 </div>

@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
     def create
-
+      
     end
 
 
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     # list between create and update. Also, you can specialize this method
     # with per-user checking of permissible attributes.
     def create_params
-      params.permit(:content,:post_id,:parent_id)
+      params.permit(:content, :post_id, :parent_id)
     end
 
 
