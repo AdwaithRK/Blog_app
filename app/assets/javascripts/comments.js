@@ -8,7 +8,7 @@ $(document).on('turbolinks:load',function(){
         post_id = this.getAttribute("data-post-id");       
         console.log("comment")
         $(this).after(
-            "<form class='comment-form'> <div class='form-group comment-box'> <input type='hidden' name='postid' value="+post_id+"> <input type='hidden' name='userid' value="+user_id+">  <input type='text' class='form-control' name='comment' placeholder='comment...'> <button type='submit' class='btn btn-primary margin_for_button' >comment</button> </div></form>"
+            "<form class='comment-form'> <div class='form-group comment-box'> <input type='hidden' name='post_id' value="+post_id+"> <input type='hidden' name='userid' value="+user_id+">  <input type='text' class='form-control' name='content' placeholder='comment...'> <button type='submit' class='btn btn-primary margin_for_button' >comment</button> </div></form>"
         )
     })
 
