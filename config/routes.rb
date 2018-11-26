@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'feeds/personal'
   get 'feeds/following'
   get 'features/search_user'
+  get 'comments/fetch_comment'
   get '/profiles/:id', to: 'profiles#show'
   # devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

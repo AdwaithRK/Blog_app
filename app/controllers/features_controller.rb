@@ -5,15 +5,10 @@ class FeaturesController < ApplicationController
     render json: @users
   end
 
-
-  def edit_pro_pic
-    
-
+  def edit_pro_pic 
   end
 
-
   def save_new_pro_pic
-
     unless params[:avatar].blank?
       # p "parameters are#{params[:avatar]}"
       current_user.avatar.purge

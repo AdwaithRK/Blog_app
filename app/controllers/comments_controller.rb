@@ -1,38 +1,28 @@
+# comments controller
 class CommentsController < ApplicationController
-
     def create
-      p "in comments create"
-      @comment=Comment.new(comment_params);
+      p 'in comments create'
+      @comment = Comment.new(comment_params)
       p @comment
       p current_user
-      @comment.user_id=current_user.id;
-
-      # if @comment.save
-      #   redirect_to current_user
-      # end
-
-      respond_to do |format|
-        format.json { head :ok }
+      @comment.user_id = current_user.id
+      if @comment.save
+        msg = { status: 'success', message: 'You do not have enough money!' }
+        respond_to do |format|
+          format.json { render json: msg }
+        end
       end
-  
     end
 
-
-
-
-
-
-
-
+    def fetch_comment
+      @post = Post.find(params[:post_id])
+      p "you are in fetch"
+      @comments = @post.comments.where("parent_id IS ?",nil)
+    end
 
     private
-    # Using a private method to encapsulate the permissible parameters is
-    # a good pattern since you'll be able to reuse the same permit
-    # list between create and update. Also, you can specialize this method
-    # with per-user checking of permissible attributes.
     def comment_params
       params.permit(:post_id, :content);
     end
-
 
 end
