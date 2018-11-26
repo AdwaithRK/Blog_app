@@ -20,6 +20,11 @@ class CommentsController < ApplicationController
       @comments = @post.comments.where("parent_id IS ?",nil)
     end
 
+    def create_replies
+      p 'in create replies'
+      p params
+    end
+
     private
     def comment_params
       params.permit(:post_id, :content);

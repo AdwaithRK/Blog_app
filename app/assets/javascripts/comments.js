@@ -2,9 +2,12 @@
 $(document).on('turbolinks:load',function(){
 
     $("body").on('click','.comment-button',function(){
-        $(this).next().remove();
-        $('.comment-form').remove();
-        user_id = this.getAttribute("data-user-id");
+        // $(this).next().remove();
+        // $('.comment-form').after().remove();
+        // $('.comment-form').remove();
+
+        $(this).click(function(){
+            user_id = this.getAttribute("data-user-id");
         post_id = this.getAttribute("data-post-id");    
     
         console.log("comment")
@@ -19,7 +22,7 @@ $(document).on('turbolinks:load',function(){
         }
         ).done(function(data){
         //     // console.log(msg);
-             console.log("success");
+             console.log("success fected comments to display");
         // }
            console.log(data.comments)
            comments=data.comments;
@@ -33,25 +36,81 @@ $(document).on('turbolinks:load',function(){
            }
         }
         )
+            
+        return false;
+        }
+        )
+        // return true;
+        
     })
 
 
     $("body" ).on( "submit", '.comment-form' ,function( event ) {
         event.preventDefault();
-         data=$( this ).serialize();
+
+        $(this).submit(function() {
+            data=$( this ).serialize();
+            $.ajax({
+                method: "POST",
+                url: "comments/create",
+                data: data
+            }
+            ).done(function(){
+                // console.log(msg);
+                console.log("success");
+                // document.querySelector(".comment-button").click();
+            }
+            )
+            return false;
+        });
+
+
+
+      });
+
+    //   $("body").onClick
+
+
+    $("body").on('click','.comment-reply-link', function(e){
+        e.preventDefault();
+        parent_id = this.getAttribute("data-parent-id");
+        post_id = this.getAttribute("data-post-id");    
+
+
+        console.log("clicked on reply");
+        $('.comment-reply-link').after(
+               "<form class='comment-form'> <div class='form-group comment-box'> <input type='hidden' name='post_id' value="+post_id+"> <input type='hidden' name='parent_id' value="+parent_id+">  <input type='text' class='form-control' name='content' placeholder='reply...'> <button type='submit' class='btn btn-primary reply-submit-button margin_for_button' >reply</button> </div></form>"
+            );
+
+    }
+    )
+
+
+    $("body").on('submit','.reply-submit-button',function(e){
+        e.preventDefault();
+        // parent_id = this.getAttribute("data-parent-id");
+        // post_id = this.getAttribute("data-post-id");  
+          data = $(this).serialize();
 
         $.ajax({
             method: "POST",
-            url: "comments/create",
-            data: data
+            url: "/comments/create_replies",
+            data: data,
         }
         ).done(function(){
-            // console.log(msg);
-            console.log("success");
+            console.log("in function")
+
         }
         )
-      });
-      
+
+    }
+    )
+
+
+
+
+
+     
 }
 
 )

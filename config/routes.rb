@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/posts/new'
   post '/posts/create'
   post '/comments/create'
+  post '/comments/create_replies'
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   
 
