@@ -8,5 +8,11 @@ json.feed @posts.each do |post|
       json.image_url url_for(post.user.avatar)
     end
 
+    if Like.exists?(user_id: current_user.id, likeable_id: post.id, likeable_type: "Post")
+      json.liked true
+    else
+      json.liked false
+    end
+
     p "in json builder"
 end

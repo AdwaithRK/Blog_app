@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  post 'likes/create'
+  delete 'likes/delete'
   get 'feeds/public'
   get 'feeds/personal'
   get 'feeds/following'
+
   get 'features/search_user'
   get 'comments/fetch_comment'
   get '/profiles/:id', to: 'profiles#show'
+
   # devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # root new_user_session_url
@@ -13,8 +17,10 @@ Rails.application.routes.draw do
   post '/features/save_new_pro_pic'
   get '/posts/new'
   post '/posts/create'
+
   post '/comments/create'
   post '/comments/create_replies'
+  get '/comments/fetch_replies'
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   
 

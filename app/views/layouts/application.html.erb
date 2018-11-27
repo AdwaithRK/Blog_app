@@ -15,7 +15,7 @@
        <div class="col-sm-12 main-header-div">
           <div class="">
           <%if user_signed_in?%>
-            <% @url='/logged_in'%>
+            <% @url='/logged_in?feed=personal'%>
           <%else%>
             <% @url='/register/cmon_let_me_in'%>
           <%end%>

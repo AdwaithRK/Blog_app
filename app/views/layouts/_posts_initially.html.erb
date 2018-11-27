@@ -1,25 +1,31 @@
+<% unless @posts == nil %>
+  <% @posts.each do |post| %>
+    <div class="feed-individual">
 
-<% @posts.each do |post| %>
-<div class="feed-individual">
+      <div class="feed-header">
+          <% if post.user.avatar.attached? %>
+          <%=image_tag (post.user.avatar), :class => "pro-pic" %>
+          <% elsif %> 
+          <img src="<%= asset_path( 'image.jpg' ) %>" class="pro-pic"/>
+          <% end %>
+          <a href="profiles/<%=post.user.id%>"> <span class="feed-name"> <%= post.user.name %> </span> </a>
+      </div>
 
-<div class="feed-header">
-    <% if post.user.avatar.attached? %>
-    <%=image_tag (post.user.avatar), :class => "pro-pic" %>
-    <% elsif %> 
-    <img src="<%= asset_path( 'image.jpg' ) %>" class="pro-pic"/>
-    <% end %>
+      <div class="feed-body">
+        <div class='feed-title'> <%=post.title%> </div>
+        <div class='feed-content'> <%=post.content%> </div>
+      </div>
 
-    <a href="profiles/<%=post.user.id%>"> <span class="feed-name"> <%= post.user.name %> </span> </a>
-</div>
+      <div class="feed-footer">
+        <button type='button' data-likeable-type='Post' data-post-id='<%=post.id%>' data-user-id='<%=post.user.id%>'  class='btn btn-light btn-lg feed-button like-button'>
+          <% if Like.exists?(user_id: current_user.id, likeable_id: post.id, likeable_type: "Post")%>
+            <i class='fa fa-thumbs-o-down' style='font-size:24px'></i>
+          <% else %>
+            <i class='fa fa-thumbs-o-up' style='font-size:24px'></i>
+          <%end%>
+        </button> <button type='button' class='btn btn-light btn-lg feed-button comment-button' data-post-id='<%= post.id %>' data-user-id= '<%= post.user.id %>' ><i class='fa fa-comment-o' style='font-size:24px'></i></button>
+      </div>
 
-<div class="feed-body">
-  <div class='feed-title'> <%=post.title%> </div>
-  <div class='feed-content'> <%=post.content%> </div>
-</div>
-
-<div class="feed-footer">
-<button type='button' class='btn btn-light btn-lg feed-button like-button'><i class='fa fa-thumbs-o-up' style='font-size:24px'></i></button><button type='button' class='btn btn-light btn-lg feed-button comment-button' data-post-id=<%= post.id %> data-user-id= <%= post.user.id %> ><i class='fa fa-comment-o' style='font-size:24px'></i></button>
-</div>
-
-</div>
+    </div>
+  <% end %>
 <% end %>

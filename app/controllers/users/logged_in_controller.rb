@@ -6,8 +6,10 @@ class Users::LoggedInController < ApplicationController
       
       if(@feedtype == 'public')
         @posts = Post.where(privacy: "Publicly", status: "Publish").includes(:user);
-      else 
+      elsif(@feedtype == 'personal') 
         @posts = current_user.posts
+      else
+        @posts = nil;
       end
 
     end
