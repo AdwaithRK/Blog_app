@@ -50,6 +50,8 @@ $(document).on('turbolinks:load',function(){
         event.preventDefault();
 
         data=$( this ).serialize();
+          console.log($(this.elements["content"]).val());
+
         $.ajax({
             method: "POST",
             url: "comments/create",
@@ -59,6 +61,9 @@ $(document).on('turbolinks:load',function(){
             // console.log(msg);
             console.log("success");
             // document.querySelector(".comment-button").click();
+            $('.comment-form').append(
+                "<form class='comment-form'> <div class='form-group comment-box'> <input type='hidden' name='post_id' value="+post_id+"
+            )
         }
         )
 
