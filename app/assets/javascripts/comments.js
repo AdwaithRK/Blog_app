@@ -62,7 +62,7 @@ $(document).on('turbolinks:load',function(){
             console.log("success");
             // document.querySelector(".comment-button").click();
             $('.comment-form').append(
-                "<form class='comment-form'> <div class='form-group comment-box'> <input type='hidden' name='post_id' value="+post_id+"
+                
             )
         }
         )
