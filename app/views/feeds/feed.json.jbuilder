@@ -4,6 +4,8 @@ json.feed @posts.each do |post|
     json.user_name post.user.name
     json.user_id post.user.id
     json.post_id post.id
+    json.likes_count post.likes.count
+    json.comments_count post.comments.count
     if post.user.avatar.attached?
       json.image_url url_for(post.user.avatar)
     end

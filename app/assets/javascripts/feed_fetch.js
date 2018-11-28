@@ -62,7 +62,7 @@ $(document).on('turbolinks:load',function(){
             var feedHeader=$("<div class='feed-header'>");
             var feedBody=$("<div class='feed-body'>");
             var feedFooter=$("<div class='feed-footer'>");
-            $(feedFooter).append("<button data-user-id="+obj.user_id+" data-post-id="+obj.post_id+" data-likeable-type='Post' type='button' class='btn btn-light btn-lg feed-button like-button'>"+liked+"</button><button type='button' class='btn btn-light btn-lg feed-button comment-button' data-post-id="+obj.post_id+" data-user-id="+obj.user_id+"><i class='fa fa-comment-o' style='font-size:24px'></i></button>");
+            $(feedFooter).append("<button type='button' data-user-id="+obj.user_id+" data-post-id="+obj.post_id+" data-likeable-type='Post' class='btn btn-light btn-lg feed-button like-button'>"+liked+"</button><button type='button' class='btn btn-light btn-lg feed-button comment-button' data-post-id="+obj.post_id+" data-user-id="+obj.user_id+"><i class='fa fa-comment-o' style='font-size:24px'></i></button>");
             $(feedHeader).append(img)
             $(feedHeader).append("<a href='profiles/"+obj.user_id+"' ><span class='feed-name'>"+obj.user_name+"</span></a>");
             $(feedBody).append("<div class='feed-title'>"+obj.title+"</div>");
@@ -70,6 +70,7 @@ $(document).on('turbolinks:load',function(){
             $(feedIndividual).append(feedHeader);
             $(feedIndividual).append(feedBody);
             $(feedIndividual).append(feedFooter);
+            $(feedFooter).prepend("<div class='stats-div col-sm-12'>  <span class='col-sm-6 w-100 float-left'>  <span >likes </span><span class='likes-count-"+obj.post_id+"'>"+obj.likes_count+"</span>  </span>    <span class='col-sm-6 w-100 float-right'>  <span>comments </span><span class='comment-count-'"+obj.post_id+"'>"+obj.comments_count+"</span> </span> </div>");
             $('.feed-div').append(feedIndividual);
         }
         )

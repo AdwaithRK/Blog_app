@@ -20,7 +20,8 @@ Rails.application.routes.draw do
 
 
   get '/logged_in', to: 'users/logged_in#index'
-
+  post '/logged_in/follow', to: 'users/logged_in#follow'
+  delete '/logged_in/unfollow', to: 'users/logged_in#unfollow'
 
   get '/features/edit_pro_pic'
   post '/features/save_new_pro_pic'
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
 
   get '/posts/new'
   post '/posts/create'
+
 
   post '/comments/create'
   post '/comments/create_replies'

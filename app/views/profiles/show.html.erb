@@ -10,7 +10,28 @@
     <div class="box">
       <%= @user_details.name%>
     </div>
+
+    <div class="follow">
+       <%unless current_user.id == @user_details.id%>
+          <%if current_user.following.include?(@user_details)%>
+             <button type="button" class="btn btn-secondary unfollow-button" data-user-id="<%=@user_details.id%>" >Unfollow</button> 
+           <%else%>
+             <button type="button" class="btn btn-primary follow-button" data-user-id="<%=@user_details.id%>">follow</button>
+          <%end%>
+       <%end%>
+    </div>
+
+    <div class="follow-stats">
+      following:<span class="following-count"> <%=@user_details.following.count%> </span>
+      followed by:<span class="follower-count"> <%= @user_details.followers.count %> </span>
+    </div>
+
 </div>
+
+
+<br>
+
+<br>
 
 <h2> Posts from <%= @user_details.name%> </h2>
 <% if @user_posts.empty? %>

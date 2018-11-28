@@ -7,6 +7,11 @@ $(document).on('turbolinks:load',function(){
         user_id = this.getAttribute("data-user-id");
         likeable_type = this.getAttribute("data-likeable-type");
 
+        like_count = document.getElementsByClassName("likes-count-"+post_id+"");
+        console.log(like_count);
+        count = parseInt(like_count[0].innerText)
+        like_count[0].innerHTML = ++count; 
+
         $.ajax({
             method: "POST",
             url: "/likes/create",
@@ -18,7 +23,7 @@ $(document).on('turbolinks:load',function(){
           )
 
         $(this).replaceWith(
-            "<button type='button' data-likeable-type='post'  data-post-id = "+post_id+"  data-user-id = "+user_id+" class='btn btn-light btn-lg feed-button unlike-button'> <i class='fa fa-thumbs-o-down' style='font-size:24px'></i></button>"
+            "<button type='button' data-likeable-type='Post'  data-post-id = "+post_id+"  data-user-id = "+user_id+" class='btn btn-light btn-lg feed-button unlike-button'> <i class='fa fa-thumbs-o-down' style='font-size:24px'></i></button>"
         )
         
 
@@ -28,9 +33,17 @@ $(document).on('turbolinks:load',function(){
 
     $("body").on('click','.unlike-button',function(){
         
-        console.log("liked")
+        console.log("unliked")
         post_id = this.getAttribute("data-post-id");
         user_id = this.getAttribute("data-user-id");
+        likeable_type = this.getAttribute("data-likeable-type");
+
+        like_count = document.getElementsByClassName("likes-count-"+post_id+"");
+        console.log(like_count);
+        count = parseInt(like_count[0].innerText)
+        like_count[0].innerHTML = --count; 
+
+
 
         $.ajax({
             method: "DELETE",
@@ -45,7 +58,7 @@ $(document).on('turbolinks:load',function(){
 
 
         $(this).replaceWith(
-            "<button type='button' data-likeable-type='post' data-post-id = "+post_id+" data-user-id = "+user_id+" class='btn btn-light btn-lg feed-button like-button'> <i class='fa fa-thumbs-o-up' style='font-size:24px'></i></button>"
+            "<button type='button' data-likeable-type='Post' data-post-id = "+post_id+" data-user-id = "+user_id+" class='btn btn-light btn-lg feed-button like-button'> <i class='fa fa-thumbs-o-up' style='font-size:24px'></i></button>"
         )
     }
     )

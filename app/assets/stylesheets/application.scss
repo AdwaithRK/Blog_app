@@ -8,6 +8,11 @@
 @import "bootstrap";
 // Place custom css depending on bootstrap variables here!
 
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
 
 .margin_for_button{
     margin-left: 20px;

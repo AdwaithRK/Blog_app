@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
 
     def after_sign_in_path_for(resource)
-      '/logged_in'
+      '/logged_in?feed=personal'
     end
 
     def configure_permitted_parameters

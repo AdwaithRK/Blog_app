@@ -17,13 +17,29 @@
       </div>
 
       <div class="feed-footer">
-        <button type='button' data-likeable-type='Post' data-post-id='<%=post.id%>' data-user-id='<%=post.user.id%>'  class='btn btn-light btn-lg feed-button like-button'>
-          <% if Like.exists?(user_id: current_user.id, likeable_id: post.id, likeable_type: "Post")%>
-            <i class='fa fa-thumbs-o-down' style='font-size:24px'></i>
-          <% else %>
-            <i class='fa fa-thumbs-o-up' style='font-size:24px'></i>
-          <%end%>
-        </button> <button type='button' class='btn btn-light btn-lg feed-button comment-button' data-post-id='<%= post.id %>' data-user-id= '<%= post.user.id %>' ><i class='fa fa-comment-o' style='font-size:24px'></i></button>
+        <div class="stats-div col-sm-12"> 
+          <span class="col-sm-6 w-100 float-left">
+            <span>likes</span> 
+            <span class="likes-count-<%=post.id%>"> <%= post.likes.count %> </span>
+          </span>
+          <span class="col-sm-6 w-100 float-right">
+            <span>comments</span>
+            <span class="comment-count-<%=post.id%>"> <%= post.comments.count%> </span>
+          </span> 
+        </div> 
+        <% if Like.exists?(user_id: current_user.id, likeable_id: post.id, likeable_type: "Post") %>
+          <% @buttonstyle = "btn btn-light btn-lg feed-button unlike-button" %>
+        <% else %>
+           <% @buttonstyle = "btn btn-light btn-lg feed-button like-button" %>
+        <% end %>
+       
+        <button type='button' data-likeable-type='Post' data-post-id='<%=post.id%>' data-user-id='<%=post.user.id%>'  class='<%= @buttonstyle %>'>
+            <% if Like.exists?(user_id: current_user.id, likeable_id: post.id, likeable_type: "Post")%>
+              <i class='fa fa-thumbs-o-down' style='font-size:24px'></i>
+            <% else %>
+              <i class='fa fa-thumbs-o-up' style='font-size:24px'></i>
+            <%end%>
+        </button><button type='button' class='btn btn-light btn-lg feed-button comment-button' data-post-id='<%= post.id %>' data-user-id= '<%= post.user.id %>' ><i class='fa fa-comment-o' style='font-size:24px'></i></button>
       </div>
 
     </div>
