@@ -2,7 +2,7 @@ class FeedsController < ApplicationController
 
   def public
     p "in public"
-    @posts = Post.where(privacy: "Publicly", status: "Publish").includes(:user);
+    @posts = Post.where(privacy: "Publicly", status: "Publish").includes(:user)
     render 'feed'
   end
 

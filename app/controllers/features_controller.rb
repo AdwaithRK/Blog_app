@@ -1,3 +1,4 @@
+# feature controller class
 class FeaturesController < ApplicationController
   def search_user
     search_text = params[:search_text]
@@ -5,15 +6,13 @@ class FeaturesController < ApplicationController
     render json: @users
   end
 
-  def edit_pro_pic 
+  def edit_pro_pic
   end
 
   def save_new_pro_pic
     unless params[:avatar].blank?
-      # p "parameters are#{params[:avatar]}"
       current_user.avatar.purge
       current_user.avatar.attach(params[:avatar])
-      # p 'hello from save_new_pro_pic'
     end
     redirect_to features_edit_pro_pic_path
   end

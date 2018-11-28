@@ -6,9 +6,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy 
   has_one_attached :avatar
-  # validate :password_complexity
+
   has_many :likes, dependent: :destroy
 
+  # validate :password_complexity
 
   # def password_complexity
   #   if password.present? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d). /)

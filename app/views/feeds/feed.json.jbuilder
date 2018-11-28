@@ -13,6 +13,4 @@ json.feed @posts.each do |post|
     else
       json.liked false
     end
-
-    p "in json builder"
 end

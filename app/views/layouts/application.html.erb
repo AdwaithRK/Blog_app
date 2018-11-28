@@ -19,21 +19,17 @@
           <%else%>
             <% @url='/register/cmon_let_me_in'%>
           <%end%>
-
             <a href="<%=@url%>"><img src="<%= asset_path( 'Title.png' ) %>" class="Title-style"/></a>
           </div>
-       <%if user_signed_in? %>
-          <%= render 'layouts/logout_header'%>
-       <%else%>
-         <%= render 'layouts/login_header' %>
-       <%end%>
+          <%if user_signed_in? %>
+              <%= render 'layouts/logout_header'%>
+          <%else%>
+            <%= render 'layouts/login_header' %>
+          <%end%>
       </div>
     </header>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p> 
-
-
-
     <%= yield %>
   </body>
 </html>
