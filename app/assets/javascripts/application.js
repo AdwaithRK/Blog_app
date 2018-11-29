@@ -24,7 +24,6 @@
 //= require plugins/code_beautifier.min.js
 //= require plugins/code_view.min.js
 //= require plugins/colors.min.js
-//= require plugins/emoticons.min.js
 //= require plugins/entities.min.js
 //= require plugins/file.min.js
 //= require plugins/font_family.min.js
@@ -48,7 +47,6 @@
 //= require plugins/table.min.js
 //= require plugins/special_characters.min.js
 //= require plugins/url.min.js
-//= require plugins/video.min.js
 //= require third_party/embedly.min.js
 //= require third_party/font_awesome.min.js
 //= require third_party/image_aviary.min.js
