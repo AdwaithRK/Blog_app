@@ -1,5 +1,11 @@
 $(document).on('turbolinks:load',function(){
 
+
+    $('textarea').froalaEditor({
+        heightMin: 300,
+        heightMax: 300
+      }) 
+
  $(".nav-link").click(function(e) { 
     e.preventDefault();
     console.log("hello");

@@ -3,11 +3,10 @@
   <div class="form-group">
     <input type="text" class="form-control Title-style-n" name="title" placeholder="My Title" required>
   </div>
-
-  <div class="form-group">
-    <textarea class="form-control content-style" name="content" rows="10" placeholder="My Article" required></textarea>
+  
+  <div class="rich-text-editor">
+    <%= rich_text_area_tag :content %>
   </div>
-
 
   <div class="form-group try-flex">
     <select class="form-control publish-menu" name="status">

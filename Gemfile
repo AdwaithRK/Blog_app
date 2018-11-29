@@ -3,6 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'trix'
+
+gem "actiontext", github: "rails/actiontext", require: "action_text"
+gem "image_processing", "~> 1.2" # for Active Storage variants
+
+gem "wysiwyg-rails"
+gem "font-awesome-sass"
 
 gem 'bootstrap'
 gem 'jquery-rails'
