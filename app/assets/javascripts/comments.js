@@ -5,6 +5,7 @@ $(document).on('turbolinks:load',function(){
         // $(this).next().remove();
         // $('.comment-form').after().remove();
         // $('.comment-form').remove();
+        $('.comment-form').remove();
         console.log("comment")
         user_id = this.getAttribute("data-user-id");
         post_id = this.getAttribute("data-post-id");    
@@ -35,12 +36,10 @@ $(document).on('turbolinks:load',function(){
            }
         }
         );
-        $(this).click(function(){
-            
-            
-        return false;
-        }
-        )
+
+        // $(this).click(function(){
+        //   return false;
+        // })
         // return true;
         
     })
@@ -50,27 +49,34 @@ $(document).on('turbolinks:load',function(){
         event.preventDefault();
 
         data=$( this ).serialize();
-          console.log($(this.elements["content"]).val());
+        content=$(this.elements["content"]).val();
+        post_id=$(this.elements["post_id"]).val();
 
         $.ajax({
             method: "POST",
             url: "comments/create",
             data: data
         }
-        ).done(function(){
-            // console.log(msg);
+        ).done(function(data){
+            console.log("added comments with id "+data.id);
+            console.log(data);
             console.log("success");
             // document.querySelector(".comment-button").click();
-            $('.comment-form').append(
-                
+            $("#comment-box-"+post_id+"").after(
+                "<div class='comment-parent reply-margin'><div class='card-body'>"+content+"</div> <div class='card-footer'> <a href='' id = 'reply-link-"+data+"' class='comment-reply-link' data-post-id="+post_id+" data-parent-id="+data +"> reply</a> </div> </div>"
             )
+            $("#comment-box-"+post_id+"").remove();
+
         }
         )
 
-        $(this).submit(function() {
+        // $(this).submit(function() {
 
-            return false;
-        });
+        //     return false;
+        // });
+
+
+
 
 
 
@@ -81,6 +87,8 @@ $(document).on('turbolinks:load',function(){
 
     $("body").on('click','.comment-reply-link', function(e){
         e.preventDefault();
+
+        $('.reply-form').remove();
 
         parent_id = parseInt(this.getAttribute("data-parent-id"),10 );
         post_id = this.getAttribute("data-post-id");
@@ -99,7 +107,6 @@ $(document).on('turbolinks:load',function(){
                     $("#reply-link-"+parent_id+"").after(
                         "<div class='comment-parent'><div class='card-body'>"+reply.content+"</div> <div class='card-footer'> <a href='' id = 'reply-link-"+reply.id+"' class='comment-reply-link' data-post-id="+post_id+" data-parent-id="+ reply.id +"> reply</a> </div> </div>"
                     )
-    
                 });
                 
             }
@@ -107,20 +114,18 @@ $(document).on('turbolinks:load',function(){
         )
 
         $("#reply-link-"+parent_id+"").after(
-            "<form class='comment-form'> <div class='form-group comment-box'> <input type='hidden' name='post_id' value="+post_id+"> <input type='hidden' name='parent_id' value="+parent_id+">  <input type='text' class='form-control' name='content' placeholder='reply...'> <button type='submit' class='btn btn-primary reply-submit-button margin_for_button' >reply</button> </div></form>"
+            "<form class='reply-form' id='reply-box-"+parent_id+"'> <div class='form-group comment-box'> <input type='hidden' name='post_id' value="+post_id+"> <input type='hidden' name='parent_id' value="+parent_id+">  <input type='text' class='form-control' name='content' placeholder='reply...'> <button type='submit' class='btn btn-primary reply-submit-button margin_for_button' >reply</button> </div></form>"
          );
         
 
-        $(this).click(function() {
+        // $(this).click(function() {
 
+        // // console.log("clicked on reply");
 
+        // return false;
 
-        // console.log("clicked on reply");
-
-        return false;
-
-        }
-        )
+        // }
+        // )
 
 
 
@@ -128,7 +133,7 @@ $(document).on('turbolinks:load',function(){
     )
 
 
-    $("body").on('submit','.reply-submit-button',function(e){
+    $("body").on('submit','.reply-form',function(e){
         e.preventDefault();
 
         console.log("here in reply submit button");
@@ -136,13 +141,20 @@ $(document).on('turbolinks:load',function(){
         // post_id = this.getAttribute("data-post-id");  
         data = $(this).serialize();
 
+        content=$(this.elements["content"]).val();
+        parent_id=$(this.elements["parent_id"]).val();
+
         $.ajax({
             method: "POST",
             url: "/comments/create_replies",
             data: data,
         }
-        ).done(function(){
+        ).done(function(data){
             console.log("in function")
+            $("#reply-box-"+parent_id+"").after(
+                "<div class='comment-parent'><div class='card-body'>"+content+"</div> <div class='card-footer'> <a href='' id = 'reply-link-"+data+"' class='comment-reply-link' data-post-id="+post_id+" data-parent-id="+ data +"> reply</a> </div> </div>"
+            )
+            $("#reply-box-"+parent_id+"").remove();
         }
         )
 
@@ -150,6 +162,7 @@ $(document).on('turbolinks:load',function(){
           return false;
         }
     )
+
 
   })
 

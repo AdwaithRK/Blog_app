@@ -4,9 +4,8 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      msg = { status: 'success', message: 'You do not have enough money!' }
       respond_to do |format|
-        format.json { render json: msg }
+        format.json { render json: @comment.id }
       end
     end
   end
@@ -19,6 +18,13 @@ class CommentsController < ApplicationController
   def create_replies
     @reply = Comment.new(comment_params)
     @reply.user_id = current_user.id
+    if @reply.save
+      p "in replies create"
+      p "the id is #{@reply.id}"
+      respond_to do |format|
+        format.json { render json: @reply.id }
+      end
+    end
   end
 
   def fetch_replies
