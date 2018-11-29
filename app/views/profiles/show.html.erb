@@ -1,0 +1,57 @@
+
+<div id="container">
+    <div class="box">
+      <% if @user_details.avatar.attached? %>
+        <%= image_tag  @user_details.avatar, class: "profile-pic-size" %>
+      <% else %>
+        <img src="<%=  asset_path( 'image.jpg' ) %>" /> 
+      <%end%>
+    </div>
+    <div class="box">
+      <%= @user_details.name%>
+    </div>
+
+    <div class="follow">
+       <%unless current_user.id == @user_details.id%>
+          <%if current_user.following.include?(@user_details)%>
+             <button type="button" class="btn btn-secondary unfollow-button" data-user-id="<%=@user_details.id%>" >Unfollow</button> 
+           <%else%>
+             <button type="button" class="btn btn-primary follow-button" data-user-id="<%=@user_details.id%>">follow</button>
+          <%end%>
+       <%end%>
+    </div>
+
+    <div class="follow-stats">
+      following:<span class="following-count"> <%=@user_details.following.count%> </span>
+      followed by:<span class="follower-count"> <%= @user_details.followers.count %> </span>
+    </div>
+
+</div>
+
+
+<br>
+
+<br>
+
+<h2> Posts from <%= @user_details.name%> </h2>
+<% if @user_posts.empty? %>
+  <h3>no posts available</h3>
+<% else %>
+
+  <% @user_posts.each do |post| %>
+    <div class="feed-individual">
+      <div class="feed-header">
+        <div class="feed-title"><%= post.title %></div>
+      </div>
+      <div class="feed-body">
+        <div class="feed-content">
+          <%= post.content %>
+        </div>
+      </div>
+      <blockquote>
+        <small><footer><span>created at </span><%= post.created_at %>  <span>updated at </span> <%= post.updated_at%></footer></small>
+      </blockquote>
+    </div>
+  <% end %>
+
+<% end %>

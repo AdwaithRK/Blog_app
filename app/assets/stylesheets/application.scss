@@ -8,11 +8,26 @@
 @import "bootstrap";
 // Place custom css depending on bootstrap variables here!
 
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.margin_for_button{
+    margin-left: 20px;
+}
+
 .form_container{
     // float: right !important;
     height: calc(1.25rem + 2px);
     margin-left: 10px;
     width: 165.98863599999999px;
+}
+
+.publish-menu{
+    width: 226px;
+    margin-left: 50px;
 }
 
 
@@ -107,3 +122,17 @@
     bottom: 20px;
 
 }
+
+
+.pro-pic{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+
+.comment-box{
+    display: flex;
+    width: 90%;
+} 
+

@@ -1,0 +1,41 @@
+// Place all the styles related to the feeds controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.feed-name{
+    position: relative;
+    bottom: 10px;
+}
+
+.stats-div{
+    text-align: center;
+}
+
+.feed-title{
+    font-weight: bold;
+}
+
+.feed-footer{
+    // display: flex;
+}
+
+.feed-individual{
+    margin-left: 20px;
+    margin-bottom: 50px;
+    margin-right: 20px;
+    box-sizing: border-box;
+    // border-bottom: 1px solid grey;
+}
+
+.feed-button{
+    width: 50%;
+}
+
+
+
+.feed-body{
+    margin-left: 80px;
+}
+
+.feed-bottom{
+    border-bottom: 1px;
+}

@@ -1,0 +1,27 @@
+<%= form_for(@post,url: {controller: "posts", action: "create"}, method: "post") do%>
+
+  <div class="form-group">
+    <input type="text" class="form-control Title-style-n" name="title" placeholder="My Title" required>
+  </div>
+
+  <div class="form-group">
+    <textarea class="form-control content-style" name="content" rows="10" placeholder="My Article" required></textarea>
+  </div>
+
+
+  <div class="form-group try-flex">
+    <select class="form-control publish-menu" name="status">
+      <option>Publish</option>
+      <option>Draft</option>
+    </select>
+
+    <select class="form-control publish-menu" name="privacy">
+      <option>Publicly</option>
+      <option>Privately</option>
+    </select>
+    
+  </div>
+
+  <button type="submit" class="btn btn-primary form-submit">Save</button>
+
+<% end %>

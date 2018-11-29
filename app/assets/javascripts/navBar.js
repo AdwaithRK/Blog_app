@@ -13,10 +13,14 @@ function onSearchButtonClick () {
             let wrapper = $('.search-results').empty().show();
             console.log(data);
             for ( let obj of data ){
-            let a = $('<a href='+ '/users/'+ obj.id +'></a>').text(obj.name);
+            let a = $('<a href='+ '/profiles/'+ obj.id +'></a>').text(obj.name);
             wrapper.append($('<div class="search-results-row"></div>').append(a));
             }
         }
       });
   }
+}
+
+function bowbow(){
+  console.log("bow bow");
 }
