@@ -1,6 +1,6 @@
 json.feed @posts.each do |post|
     json.title post.title
-    json.content post.content
+    json.content post.content.try(:body).try(:html_safe)
     json.user_name post.user.name
     json.user_id post.user.id
     json.post_id post.id

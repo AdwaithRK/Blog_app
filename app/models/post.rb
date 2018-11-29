@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+
+    has_rich_text :content
     enum status: %w(Draft Publish)
     enum privacy: %w(Publicly Privately)
 
