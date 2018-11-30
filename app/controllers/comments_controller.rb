@@ -19,8 +19,6 @@ class CommentsController < ApplicationController
     @reply = Comment.new(comment_params)
     @reply.user_id = current_user.id
     if @reply.save
-      p "in replies create"
-      p "the id is #{@reply.id}"
       respond_to do |format|
         format.json { render json: @reply.id }
       end

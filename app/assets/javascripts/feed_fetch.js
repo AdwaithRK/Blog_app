@@ -1,10 +1,10 @@
 $(document).on('turbolinks:load',function(){
 
 
-    $('textarea').froalaEditor({
-        heightMin: 300,
-        heightMax: 300
-      }) 
+ $('textarea').froalaEditor({
+    heightMin: 300,
+    heightMax: 300
+    }) 
 
  $(".nav-link").click(function(e) { 
     e.preventDefault();
@@ -23,35 +23,18 @@ $(document).on('turbolinks:load',function(){
     queryString = "feed="+text;
 
     new_URL = now + '?' + queryString;
-
-    // window.history.replaceState( {} ,title, new_URL );
      history.pushState({},"",new_URL);
     $.ajax({
         method: "GET",
         url: url
       }).done(function(data){
-         console.log(data.feed);
-         console.log("we got feed");
-        
-        //  for(let obj of data){
-        //     var img = $('<img class="pro-pic">');
-        //     if(obj.image_url){
-        //       console.log("bow bow");
-        //     }
-        //     else{
-        //       console.log("meow meow")
-        //     }
-             
-        //  }
         (data.feed).forEach(function(obj){
             console.log(obj);
             var img = $('<img class="pro-pic">');
             if(obj.image_url){
-                // img.attr('src',"<%= image_tag("+obj.image_url+") %>");
                 img.attr('src',obj.image_url);
             }
-            else{
-                // img.attr('src',"<%= asset_path('image.jpg') %>");               
+            else{           
                 img.attr('src',"assets/image.jpg");               
             }
 
@@ -64,9 +47,7 @@ $(document).on('turbolinks:load',function(){
                 liked_button = "<button type='button' data-user-id="+obj.user_id+" data-post-id="+obj.post_id+" data-likeable-type='Post' class='btn btn-light btn-lg feed-button like-button'>"+liked+"</button><button type='button' class='btn btn-light btn-lg feed-button comment-button' data-post-id="+obj.post_id+" data-user-id="+obj.user_id+"><i class='fa fa-comment-o' style='font-size:24px'></i></button>"
             }
 
-            // img.appendTo('.feed-div');
             var feedIndividual=$("<div class='feed-individual'>");
-            // $(header).append(img);
             var feedHeader=$("<div class='feed-header'>");
             var feedBody=$("<div class='feed-body'>");
             var feedFooter=$("<div class='feed-footer'>");
@@ -87,23 +68,6 @@ $(document).on('turbolinks:load',function(){
 
 
   })
-  
-  
-    // $(".comment-button").on('click',function(){
-    //     console.log("comment")
-    //     $(this).after(
-    //         "<form><div class='form-group'><input type='text' class='form-control' placeholder='comment...'> <button type='submit' class='btn btn-primary'>comment</button> </div></form>"
-    //     )
-    // }
-    // )
-
- 
-
-    // $("body").on('click',".like-button",function(){
-    //     console.log("like");
-    // }
-    // )
-
 
 }
 
