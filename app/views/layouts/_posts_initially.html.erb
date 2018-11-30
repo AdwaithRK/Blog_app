@@ -13,7 +13,7 @@
 
       <div class="feed-body">
         <div class='feed-title'> <%=post.title%> </div>
-        <div class='feed-content'> <%=post.content%> </div>
+        <div class='feed-content'> <%=post.content.try(:body).try(:html_safe)%> </div>
       </div>
 
       <div class="feed-footer">

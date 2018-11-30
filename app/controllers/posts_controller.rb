@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(create_params)
     @post.save!
+    redirect_to '/logged_in?feed=personal'
   end
 
   private
