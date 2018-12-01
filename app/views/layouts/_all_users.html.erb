@@ -1,0 +1,26 @@
+
+ <% @users.each do |user| %>
+   <div class="each-user-card">
+    <div class="card">
+        <div class="card-header bg-secondary">
+        <%= user.name %>
+        </div>
+        <div class="card-body">
+           <span>Email:<span> <%=user.email%><br>
+           <span>No of posts:</span> <%=user.posts.count%>
+        </div>
+        <div class="card-footer">
+          <div class="admin-buttons">
+            <div> 
+                <span class="ban-form" id="ban-form-<%=user.id%>">
+                    <button type="button" class="btn btn-warning ban">Ban</button> 
+                    <select class="1-100"></select>
+                </span>
+            </div>
+            <div> <button type="button" class="btn btn-danger delete">Delete</button> </div>
+          </div>
+        </div>
+    </div>
+   </div>
+    <br>
+ <%end%>

@@ -38,7 +38,8 @@ Rails.application.routes.draw do
   get 'comments/fetch_comment'
 
   get '/admin_panel/view'
- 
+  get '/admin_panel/list_users'
+  get '/admin_panel/list_posts'
  
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   
