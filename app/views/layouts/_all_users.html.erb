@@ -1,9 +1,10 @@
 
  <% @users.each do |user| %>
+  <div id="user-card-<%=user.id%>">
    <div class="each-user-card">
     <div class="card">
         <div class="card-header bg-secondary">
-        <%= user.name %>
+        <a href="/profiles/<%=user.id%>" style="color: aliceblue;">  <%= user.name %> </a>
         </div>
         <div class="card-body">
            <span>Email:<span> <%=user.email%><br>
@@ -13,14 +14,16 @@
           <div class="admin-buttons">
             <div> 
                 <span class="ban-form" id="ban-form-<%=user.id%>">
-                    <button type="button" class="btn btn-warning ban">Ban</button> 
-                    <select class="1-100"></select>
+                    <button type="button" data-user-id="<%=user.id%>" class="btn btn-warning ban">Ban</button> 
+                    <select id="ban-days-<%=user.id%>" class="1-100"></select>
                 </span>
             </div>
-            <div> <button type="button" class="btn btn-danger delete">Delete</button> </div>
+            <div> <button type="button" data-user-id="<%=user.id%>" class="btn btn-danger delete-user-admin">Delete</button> </div>
           </div>
         </div>
     </div>
    </div>
-    <br>
+       <br>
+</div>
+
  <%end%>

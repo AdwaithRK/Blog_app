@@ -1,0 +1,24 @@
+
+ <% @posts.each do |post| %>
+
+ <div id="post-card-<%=post.id%>">
+   <div class="each-user-card">
+    <div class="card">
+        <div class="card-header bg-secondary">
+           <span class="article-listing-heading"><%=post.title%></span>
+        </div>
+        <div class="card-body">
+           <span><%= post.content %><span>
+        </div>
+        <div class="card-footer">
+          <div class="admin-buttons">
+            <div> By <a href="/profiles/<%=post.user.id%>"> <%= post.user.name%> </a> </div>
+            <div><button type="button" data-post-id="<%=post.id%>" class="btn btn-danger delete-post-admin">Delete</button></div>
+          </div>
+        </div>
+    </div>
+    </div>
+       <br>
+</div>
+
+ <%end%>

@@ -1,0 +1,21 @@
+$('.admin_panel').empty().show();
+
+$('.admin_panel').html("<%= escape_javascript(render('layouts/all_posts', posts: @posts)) %>")
+
+
+$("body").on('click','.delete-post-admin',function(){
+       post_id = this.getAttribute("data-post-id");
+       if (confirm("Do you want to delete this post?")) {
+
+        $.ajax({
+            method: "DELETE",
+            url: "/admin_panel/delete_post",
+            data: {post_id: post_id}
+        }
+        ).done(function(){
+           $("#post-card-"+post_id+"").hide('slow', function(){ $("#post-card-"+post_id+"").remove(); });            
+           }
+        )
+     }
+  }
+)

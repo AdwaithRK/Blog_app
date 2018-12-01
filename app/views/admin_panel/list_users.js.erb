@@ -3,11 +3,46 @@ $('.admin_panel').empty().show();
 $('.admin_panel').html("<%= escape_javascript(render('layouts/all_users', users: @users)) %>")
 
 
-$('.ban').click(
-  function(){
-   console.log("you are banned");
+$("body").on('click','.ban',function(){
+   console.log(this);
+    user_id = this.getAttribute("data-user-id");
+    $("#ban-form-"+user_id+"").replaceWith( "<button type='button' id='unban-button-"+user_id+"' data-user-id="+user_id+" class='btn btn-warning unban'>UnBan</button>" );
    }
 )
+
+$("body").on('click','.delete-user-admin',function(){
+    console.log(this);
+    user_id = this.getAttribute("data-user-id");
+    if (confirm("Do you want to permanently delete this user?")) {
+        $.ajax({
+            method: "DELETE",
+            url: "/admin_panel/delete_user",
+            data: {user_id: user_id}
+        }
+        ).done(function(){
+             $("#user-card-"+user_id+"").hide('slow', function(){ $("#user-card-"+user_id+"").remove(); });
+            }
+        )
+     
+    }
+  }
+)
+
+$("body").on('click','.unban',function(){
+    console.log(this);
+    console.log("hellooo")
+    user_id = this.getAttribute("data-user-id");
+    $("#unban-button-"+user_id+"").replaceWith(
+                "<span class='ban-form' id='ban-form-"+user_id+"'><button type='button' data-user-id="+user_id+" class='btn btn-warning ban'>Ban</button> <select class='1-100'></select></span>"
+                );
+    var $select = $(".1-100");
+    for (i=1;i<=100;i++){
+    $select.append($('<option></option>').val(i).html(i))
+    }
+  }
+  )
+
+
 
 $(function(){
     var $select = $(".1-100");
@@ -15,3 +50,4 @@ $(function(){
         $select.append($('<option></option>').val(i).html(i))
     }
 });
+

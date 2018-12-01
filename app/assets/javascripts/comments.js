@@ -3,13 +3,12 @@ $(document).on('turbolinks:load',function(){
 
     $("body").on('click','.comment-button',function(){
         // $(this).next().remove();
-        // $('.comment-form').after().remove();
-        // $('.comment-form').remove();
-        $('.comment-form').remove();
+
         console.log("comment")
         user_id = this.getAttribute("data-user-id");
         post_id = this.getAttribute("data-post-id");    
-    
+        $("#comment-box-"+post_id+"").remove();
+
         console.log("comment")
         $(this).after(
             "<form class='comment-form' id='comment-box-"+post_id+"'> <div class='form-group comment-box'> <input type='hidden' name='post_id' value="+post_id+"> <input type='hidden' name='userid' value="+user_id+">  <input type='text' class='form-control' name='content' placeholder='comment...'> <button type='submit' class='btn btn-primary margin_for_button' >comment</button> </div></form>"
@@ -28,7 +27,7 @@ $(document).on('turbolinks:load',function(){
            comments=data.comments;
            if(comments.length){
                (comments).forEach(function(comment){
-                   $("#comment-box-"+post_id+"").after(
+                   $("#comment-box-"+post_id+"").append(
                      "<div class='comment-parent reply-margin'><div class='card-body'>"+comment.content+"</div> <div class='card-footer'> <a href='' id = 'reply-link-"+comment.id+"' class='comment-reply-link' data-post-id="+post_id+" data-parent-id="+ comment.id +"> reply</a> </div> </div>"
                    )
                }
@@ -104,7 +103,7 @@ $(document).on('turbolinks:load',function(){
             if(data.length){
 
                 (data).forEach(function(reply){
-                    $("#reply-link-"+parent_id+"").after(
+                    $("#reply-link-"+parent_id+"").append(
                         "<div class='comment-parent'><div class='card-body'>"+reply.content+"</div> <div class='card-footer'> <a href='' id = 'reply-link-"+reply.id+"' class='comment-reply-link' data-post-id="+post_id+" data-parent-id="+ reply.id +"> reply</a> </div> </div>"
                     )
                 });
@@ -113,7 +112,7 @@ $(document).on('turbolinks:load',function(){
         }
         )
 
-        $("#reply-link-"+parent_id+"").after(
+        $("#reply-link-"+parent_id+"").append(
             "<form class='reply-form' id='reply-box-"+parent_id+"'> <div class='form-group comment-box'> <input type='hidden' name='post_id' value="+post_id+"> <input type='hidden' name='parent_id' value="+parent_id+">  <input type='text' class='form-control' name='content' placeholder='reply...'> <button type='submit' class='btn btn-primary reply-submit-button margin_for_button' >reply</button> </div></form>"
          );
         
