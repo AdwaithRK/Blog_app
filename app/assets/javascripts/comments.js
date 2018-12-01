@@ -86,6 +86,7 @@ $(document).on('turbolinks:load',function(){
 
     $("body").on('click','.comment-reply-link', function(e){
         e.preventDefault();
+        e.prevent
 
         $('.reply-form').remove();
 
