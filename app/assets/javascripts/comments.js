@@ -61,10 +61,10 @@ $(document).on('turbolinks:load',function(){
             console.log(data);
             console.log("success");
             // document.querySelector(".comment-button").click();
-            $("#comment-box-"+post_id+"").after(
+            $("#comment-box-"+post_id+"").append(
                 "<div class='comment-parent reply-margin'><div class='card-body'>"+content+"</div> <div class='card-footer'> <a href='' id = 'reply-link-"+data+"' class='comment-reply-link' data-post-id="+post_id+" data-parent-id="+data +"> reply</a> </div> </div>"
             )
-            $("#comment-box-"+post_id+"").remove();
+            // $("#comment-box-"+post_id+"").remove();
 
         }
         )
@@ -86,12 +86,20 @@ $(document).on('turbolinks:load',function(){
 
     $("body").on('click','.comment-reply-link', function(e){
         e.preventDefault();
-        e.prevent
-
-        $('.reply-form').remove();
+        e.stopPropagation();
+        
 
         parent_id = parseInt(this.getAttribute("data-parent-id"),10 );
         post_id = this.getAttribute("data-post-id");
+
+        $("#reply-box-"+parent_id+"").remove();
+
+
+        $(this).after(
+            "<form class='reply-form' id='reply-box-"+parent_id+"'> <div class='form-group comment-box'> <input type='hidden' name='post_id' value="+post_id+"> <input type='hidden' name='parent_id' value="+parent_id+">  <input type='text' class='form-control' name='content' placeholder='reply...'> <button type='submit' class='btn btn-primary reply-submit-button margin_for_button' >reply</button> </div></form>"
+         );
+
+        // $("#reply-link-"+parent_id+"").remove();
 
         $.ajax({
             method: "GET",
@@ -104,7 +112,7 @@ $(document).on('turbolinks:load',function(){
             if(data.length){
 
                 (data).forEach(function(reply){
-                    $("#reply-link-"+parent_id+"").append(
+                    $("#reply-box-"+parent_id+"").append(
                         "<div class='comment-parent'><div class='card-body'>"+reply.content+"</div> <div class='card-footer'> <a href='' id = 'reply-link-"+reply.id+"' class='comment-reply-link' data-post-id="+post_id+" data-parent-id="+ reply.id +"> reply</a> </div> </div>"
                     )
                 });
@@ -113,9 +121,6 @@ $(document).on('turbolinks:load',function(){
         }
         )
 
-        $("#reply-link-"+parent_id+"").append(
-            "<form class='reply-form' id='reply-box-"+parent_id+"'> <div class='form-group comment-box'> <input type='hidden' name='post_id' value="+post_id+"> <input type='hidden' name='parent_id' value="+parent_id+">  <input type='text' class='form-control' name='content' placeholder='reply...'> <button type='submit' class='btn btn-primary reply-submit-button margin_for_button' >reply</button> </div></form>"
-         );
         
 
         // $(this).click(function() {
@@ -132,11 +137,19 @@ $(document).on('turbolinks:load',function(){
     }
     )
 
+    // $("body").on('click','.reply-form',function(e){
+    //     e.stopPropagation()
+    //     e.preventDefault();
+       
+    // });
+
 
     $("body").on('submit','.reply-form',function(e){
-        e.preventDefault();
-
+         e.preventDefault();
+         e.stopPropagation();
+        
         console.log("here in reply submit button");
+        debugger
         // parent_id = this.getAttribute("data-parent-id");
         // post_id = this.getAttribute("data-post-id");  
         data = $(this).serialize();
@@ -151,27 +164,23 @@ $(document).on('turbolinks:load',function(){
         }
         ).done(function(data){
             console.log("in function")
-            $("#reply-box-"+parent_id+"").after(
+            $("#reply-box-"+parent_id+"").append(
                 "<div class='comment-parent'><div class='card-body'>"+content+"</div> <div class='card-footer'> <a href='' id = 'reply-link-"+data+"' class='comment-reply-link' data-post-id="+post_id+" data-parent-id="+ data +"> reply</a> </div> </div>"
             )
-            $("#reply-box-"+parent_id+"").remove();
+            // $("#reply-box-"+parent_id+"").remove();
         }
         )
+    }
 
-        $(this).submit(function() {
-          return false;
-        }
+        // $(this).submit(function() {
+        //   return false;
+        // }
     )
 
 
   })
 
 
-
-
-
-     
-})
 
 
 
