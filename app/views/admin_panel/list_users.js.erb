@@ -6,7 +6,18 @@ $('.admin_panel').html("<%= escape_javascript(render('layouts/all_users', users:
 $("body").on('click','.ban',function(){
    console.log(this);
     user_id = this.getAttribute("data-user-id");
-    $("#ban-form-"+user_id+"").replaceWith( "<button type='button' id='unban-button-"+user_id+"' data-user-id="+user_id+" class='btn btn-warning unban'>UnBan</button>" );
+    ban_days = $("#ban-days-"+user_id+"").val();
+
+    console.log("ban day are "+ban_days);
+
+            $.ajax({
+            method: "PATCH",
+            url: "/admin_panel/ban_user",
+            data: {user_id: user_id , ban_days: ban_days}
+        }
+        ).done(function(){
+              $("#ban-form-"+user_id+"").replaceWith( "<button type='button' id='unban-button-"+user_id+"' data-user-id="+user_id+" class='btn btn-warning unban'>UnBan</button>" );            }
+        )
    }
 )
 
@@ -32,15 +43,31 @@ $("body").on('click','.unban',function(){
     console.log(this);
     console.log("hellooo")
     user_id = this.getAttribute("data-user-id");
-    $("#unban-button-"+user_id+"").replaceWith(
+ 
+
+    $.ajax({
+            method: "PATCH",
+            url: "/admin_panel/unban_user",
+            data: {user_id: user_id}
+        }
+      ).done(function(){
+
+         $("#unban-button-"+user_id+"").replaceWith(
                 "<span class='ban-form' id='ban-form-"+user_id+"'><button type='button' data-user-id="+user_id+" class='btn btn-warning ban'>Ban</button> <select class='1-100'></select></span>"
                 );
-    var $select = $(".1-100");
-    for (i=1;i<=100;i++){
-    $select.append($('<option></option>').val(i).html(i))
-    }
+            var $select = $(".1-100");
+            $select.attr("id","ban-days-"+user_id+"");
+            for (i=1;i<=100;i++){
+                  $select.append($("<option></option>").val(i).html(i))
+              }
+
+              }
+        )
+
+
   }
   )
+  
 
 
 

@@ -1,4 +1,7 @@
 class Users::LoggedInController < ApplicationController
+ 
+  before_action :banned_user, only: [:follow, :unfollow]
+ 
   def index
     @name = current_user.name
     @feedtype = params[:feed]
@@ -39,5 +42,8 @@ class Users::LoggedInController < ApplicationController
   def following?(other_user)
     current_user.following.include?(other_user)
   end
+
+
+
 
 end

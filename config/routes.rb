@@ -42,6 +42,8 @@ Rails.application.routes.draw do
   get '/admin_panel/list_posts'
   delete '/admin_panel/delete_post'
   delete '/admin_panel/delete_user'
+  patch '/admin_panel/ban_user'
+  patch '/admin_panel/unban_user'
  
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   

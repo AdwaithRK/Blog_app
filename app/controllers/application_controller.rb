@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
     # protect_from_forgery with: :null_session
     skip_before_action :verify_authenticity_token
     before_action :configure_permitted_parameters, if: :devise_controller?
-    before_action :check_signup
 
     protected
 
@@ -15,8 +14,15 @@ class ApplicationController < ActionController::Base
         end
     end
 
+
     def after_sign_in_path_for(resource)
-      '/logged_in?feed=personal'
+    
+        if Date.today <= current_user.blockdate
+            '/logged_in?feed=personal'
+        else
+            flash[:error] = 'You are banned'
+            redirect_to '/register/cmon_let_me_in'
+        end
     end
 
     def configure_permitted_parameters

@@ -1,6 +1,5 @@
 class AdminPanelController < ApplicationController
     def view
-
     end
 
     def list_users
@@ -11,6 +10,19 @@ class AdminPanelController < ApplicationController
     def list_posts
         @posts = Post.all
         p 'list all posts'
+    end
+
+    def ban_user
+        @user = User.find(params[:user_id])
+        @user.blockdate = Date.today + params[:ban_days].to_i.days
+        @user.save
+        render json: { status: 'ok' }
+    end
+
+    def unban_user
+        @user = User.find(params[:user_id])
+        @user.blockdate = Date.today
+        @user.save
     end
 
     def delete_post
