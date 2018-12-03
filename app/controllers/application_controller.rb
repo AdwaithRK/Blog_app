@@ -16,9 +16,10 @@ class ApplicationController < ActionController::Base
 
 
     def after_sign_in_path_for(resource)
-    
-        if Date.today <= current_user.blockdate
-            '/logged_in?feed=personal'
+       p "-----------------user-----------------------"
+       p resource
+        if Date.today <= resource.blockdate
+            redirect_to '/logged_in?feed=personal'
         else
             flash[:error] = 'You are banned'
             redirect_to '/register/cmon_let_me_in'
